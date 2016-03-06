@@ -36,6 +36,25 @@ test("observable change", function (assert) {
     assert.end()
 })
 
+test("observable destroy", function (assert) {
+  var v = Observable("init value")
+  var values = []
+
+  v(function onchange(newValue) {
+    values.push(newValue)
+  })
+
+  v.set("foo")
+  v.set("foo")
+
+  v.destroy()
+  v.set("bar")
+
+  assert.deepEqual(values, ["foo", "foo"])
+
+  assert.end()
+})
+
 test("computed observable", function (assert) {
     var v1 = Observable("one")
     var v2 = Observable("two")
