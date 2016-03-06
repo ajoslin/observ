@@ -12,6 +12,10 @@ function Observable(value) {
         }
     }
 
+    observable.destroy = function destroy () {
+      listeners.length = 0
+    }
+
     return observable
 
     function observable(listener) {
