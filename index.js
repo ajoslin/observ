@@ -12,6 +12,10 @@ function Observable(value) {
         }
     }
 
+    observable.dispose = function () {
+      listeners.length = 0
+    }
+
     return observable
 
     function observable(listener) {
